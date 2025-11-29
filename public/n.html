@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Threads | Premium T-Shirts</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <style>
+        :root {
+            --section-rotate: 9vw;
+            --primary-dark: #0a0a0a;
+            --secondary-dark: #1a1a1a;
+            --accent-silver: #c0c0c0;
+            --text-white: #ffffff;
+            --text-light-gray: #b0b0b0;
+            --card-dark: #151515;
+            --hover-silver: #e0e0e0;
+            --gradient-silver: linear-gradient(135deg, #434343 0%, #000000 100%);
+            --shadow-dark: rgba(0, 0, 0, 0.8);
+        }
+
+        ::-moz-selection {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+        }
+
+        ::selection {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            font-size: 62.5%;
+            box-sizing: border-box;
+        }
+
+        body {
+            line-height: 1.6;
+            font-weight: 300;
+            font-family: 'Lato', sans-serif;
+            color: var(--text-white);
+            background-color: var(--primary-dark);
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main {
+            background: linear-gradient(145deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 6rem 4rem;
+            flex: 1;
+            position: relative;
+        }
+        .product-header {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: flex-start;
+        }
+        .product-image {
+            flex: 1;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .product-details {
+            flex: 1;
+            padding: 20px 0;
+        }
+        .brand-name {
+            font-size: 14px;
+            color: var(--accent-silver);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .product-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--accent-silver);
+        }
+        .size-selection {
+            margin-bottom: 30px;
+        }
+        .size-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+        .size-option {
+            padding: 12px 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background: none;
+            color: var(--text-white);
+        }
+        .size-option:hover {
+            border-color: var(--accent-silver);
+        }
+        .size-option.selected {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+            border-color: var(--accent-silver);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-buy {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+            flex: 2;
+        }
+        .btn-buy:hover {
+            background-color: var(--text-white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+        }
+        .btn-cart {
+            background-color: transparent;
+            color: var(--accent-silver);
+            border: 1px solid var(--accent-silver);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-cart:hover {
+            background-color: rgba(192,192,192,0.1);
+        }
+        @media (max-width: 900px) {
+            .product-header { flex-direction: column; }
+            .action-buttons { flex-direction: column; }
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .span-all-rows {
+            grid-row: 1 / -1;
+        }
+
+        .container {
+            max-width: 120rem;
+            margin: 0 auto;
+        }
+
+        .ma-bt-md {
+            margin-bottom: 3rem !important;
+        }
+
+        .ma-bt-lg {
+            margin-bottom: 3.5rem !important;
+        }
+
+        .right {
+            text-align: right !important;
+        }
+
+        .line {
+            margin: 6rem 0;
+            width: 100%;
+            height: 1px;
+            background-color: #333;
+        }
+
+        .alert {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            color: var(--text-white);
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-align: center;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            padding: 1.6rem 15rem;
+            box-shadow: 0 2rem 4rem var(--shadow-dark);
+        }
+        .alert--success {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+        }
+        .alert--error {
+            background-color: #8b0000;
+        }
+
+        .heading-secondary {
+            font-size: 2.25rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            background: var(--gradient-silver);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.1rem;
+            line-height: 1.3;
+            display: inline-block;
+        }
+        .heading-secondary--error {
+            background-image: linear-gradient(to right, #ff4444, #cc0000);
+            font-size: 3.5rem;
+        }
+
+        .heading-primary,
+        .heading-tertirary {
+            color: var(--text-white);
+            text-transform: uppercase;
+            font-weight: 300;
+            text-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.7);
+        }
+        .heading-primary span,
+        .heading-tertirary span {
+            padding: 1rem 1.5rem;
+            line-height: 1;
+            box-decoration-break: clone;
+            background: var(--gradient-silver);
+            border-radius: 3px;
+        }
+
+        .heading-primary {
+            font-size: 5rem;
+            text-align: center;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .heading-tertirary {
+            font-size: 2.75rem;
+            text-align: right;
+            position: absolute;
+            bottom: 1rem;
+            right: 2rem;
+            width: 70%;
+            z-index: 10;
+        }
+
+        .btn,
+        .btn:link,
+        .btn:visited {
+            font-size: 1.6rem;
+            padding: 1.4rem 3rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s;
+            font-weight: 400;
+            backface-visibility: hidden;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--accent-silver);
+        }
+
+        .btn--white {
+            background-color: var(--text-white);
+            color: var(--primary-dark);
+        }
+        .btn--white:hover {
+            background-color: var(--accent-silver);
+        }
+
+        .btn--green {
+            background: var(--gradient-silver);
+            color: var(--text-white);
+            border: 1px solid var(--accent-silver);
+        }
+        .btn--green:hover {
+            background: linear-gradient(135deg, var(--accent-silver) 0%, #666 100%);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .btn--small {
+            padding: 1.25rem 2.5rem !important;
+            font-size: 1.4rem !important;
+        }
+
+        .btn-small,
+        .btn-small:link,
+        .btn-small:visited {
+            background: var(--gradient-silver);
+            color: var(--text-white);
+            font-size: 1.4rem;
+            padding: 1.25rem 2.5rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 400;
+            border: 1px solid var(--accent-silver);
+        }
+
+        .btn-small:hover {
+            background: linear-gradient(135deg, var(--accent-silver) 0%, #666 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 0 5rem;
+            height: 8rem;
+            position: relative;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+        }
+        .header__logo img {
+            height: 4rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .section-header {
+            position: relative;
+            height: 38vw;
+            background: var(--gradient-silver);
+            background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heading-box {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4rem;
+            border-radius: 10px;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+        }
+
+        .heading-box__group {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .heading-box__detail {
+            display: flex;
+            align-items: center;
+            margin: 0 2rem;
+            font-size: 1.6rem;
+        }
+
+        .heading-box__icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            fill: var(--accent-silver);
+            margin-right: 1rem;
+        }
+
+        .heading-box__text {
+            color: var(--text-white);
+        }
+
+        .section-description {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 6rem;
+            margin: 10rem auto;
+            max-width: 120rem;
+            padding: 0 2rem;
+        }
+
+        .overview-box {
+            background: linear-gradient(145deg, var(--card-dark) 0%, var(--secondary-dark) 100%);
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+
+        .overview-box__group {
+            margin-bottom: 4rem;
+        }
+
+        .overview-box__detail {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            font-size: 1.5rem;
+        }
+
+        .overview-box__icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            fill: var(--accent-silver);
+            margin-right: 1.5rem;
+        }
+
+        .overview-box__label {
+            font-weight: 700;
+            margin-right: 1rem;
+            color: var(--accent-silver);
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .overview-box__text {
+            color: var(--text-white);
+        }
+
+        .overview-box__img {
+            height: 4rem;
+            width: 4rem;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            border: 2px solid var(--accent-silver);
+        }
+
+        .description-box {
+            background: linear-gradient(145deg, var(--card-dark) 0%, var(--secondary-dark) 100%);
+            border-radius: 10px;
+            padding: 4rem;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+
+        .description__text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: var(--text-light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .section-pictures {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 10rem auto;
+            max-width: 120rem;
+            padding: 0 2rem;
+        }
+
+        .picture-box {
+            height: 30rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+        }
+
+        .picture-box__img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        .picture-box__img:hover {
+            transform: scale(1.1);
+        }
+
+        .section-reviews {
+            background: linear-gradient(145deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            padding: 8rem 0;
+            margin: 10rem 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            gap: 4rem;
+            max-width: 120rem;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .reviews__card {
+            background: linear-gradient(145deg, var(--card-dark) 0%, var(--secondary-dark) 100%);
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .reviews__card:hover {
+            transform: translateY(-1rem);
+            box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.6);
+        }
+
+        .reviews__avatar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .reviews__avatar-img {
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            border: 2px solid var(--accent-silver);
+        }
+
+        .reviews__user {
+            font-size: 1.6rem;
+            color: var(--text-white);
+            font-weight: 700;
+        }
+
+        .reviews__text {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            color: var(--text-light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .reviews__rating {
+            display: flex;
+        }
+
+        .reviews__star {
+            height: 2rem;
+            width: 2rem;
+            fill: var(--accent-silver);
+            margin-right: 0.5rem;
+        }
+
+        .reviews__star--inactive {
+            fill: #666;
+        }
+
+        .section-cta {
+            padding: 8rem 0;
+            margin: 10rem 0;
+        }
+
+        .cta {
+            position: relative;
+            max-width: 120rem;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3rem 8rem rgba(0, 0, 0, 0.5);
+        }
+
+        .cta__img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
+            filter: grayscale(100%);
+        }
+
+        .cta__img--logo {
+            opacity: 0.2;
+            width: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            filter: invert(1);
+        }
+
+        .cta__content {
+            position: relative;
+            padding: 8rem 6rem;
+            text-align: center;
+            background: linear-gradient(145deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            z-index: 10;
+        }
+
+        .cta__text {
+            font-size: 1.8rem;
+            color: var(--text-light-gray);
+            margin: 2rem 0 4rem;
+        }
+
+        .footer {
+            background-color: var(--secondary-dark);
+            padding: 4rem 4rem 2rem 4rem;
+            font-size: 1.4rem;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-row-gap: 0.75rem;
+            justify-content: space-between;
+            border-top: 1px solid #333;
+        }
+        .footer__logo img {
+            height: 3rem;
+            filter: brightness(0) invert(1);
+        }
+        .footer__nav {
+            list-style: none;
+            display: flex;
+        }
+        .footer__nav li {
+            margin-left: 1.5rem;
+        }
+        .footer__nav a {
+            color: var(--text-light-gray);
+            text-decoration: none !important;
+            transition: all 0.2s;
+        }
+        .footer__nav a:hover,
+        .footer__nav a:active {
+            color: var(--accent-silver);
+        }
+        .footer__copyright {
+            justify-self: end;
+            color: #666;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+        .nav--products {
+            flex: 0 1 40%;
+        }
+        .nav--user {
+            flex: 0 1 40%;
+            justify-content: flex-end;
+        }
+        .nav__el,
+        .nav__el:link,
+        .nav__el:visited {
+            color: var(--text-white);
+            text-transform: uppercase;
+            font-size: 1.6rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s;
+            font-weight: 400;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .nav__el:hover,
+        .nav__el:active {
+            transform: translateY(-2px);
+            color: var(--accent-silver);
+            text-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.8);
+        }
+        .nav__el:not(:last-child) {
+            margin-right: 3rem;
+        }
+        .nav__el:focus {
+            outline: none;
+        }
+        .nav__el--cta {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid var(--accent-silver);
+            transition: all 0.3s;
+        }
+        .nav__el--cta:hover {
+            background-color: var(--accent-silver);
+            color: var(--primary-dark);
+            text-shadow: none;
+        }
+        .nav__search {
+            display: flex;
+            align-items: center;
+        }
+        .nav__search-btn {
+            background: none;
+            border: none;
+            margin-right: 0.8rem;
+            transform: translateY(1px);
+        }
+        .nav__search-btn svg {
+            height: 2rem;
+            width: 2rem;
+            fill: var(--accent-silver);
+        }
+        .nav__search-input {
+            font-family: inherit;
+            font-weight: inherit;
+            text-transform: uppercase;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            padding-bottom: 3px;
+            border-bottom: 1px solid #666;
+            width: 18rem;
+            transition: all 0.3s;
+        }
+        .nav__search-input::placeholder {
+            color: #666;
+        }
+        .nav__search-input:focus {
+            outline: none;
+            width: 25rem;
+            border-bottom: 1px solid var(--accent-silver);
+        }
+        .nav__user-img {
+            height: 3.5rem;
+            width: 3.5rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 2px solid var(--accent-silver);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav nav--products">
+            <a href="#" class="nav__el">All Products</a>
+            <form class="nav__search">
+                <button class="nav__search-btn">
+                    <svg>
+                        <use xlink:href="img/icons.svg#icon-search"></use>
+                    </svg>
+                </button>
+                <input
+                    type="text"
+                    placeholder="Search products"
+                    class="nav__search-input"
+                />
+            </form>
+        </nav>
+        <div class="header__logo">
+            <img src="img/logo-white.png" alt="Urban Threads logo" />
+        </div>
+        <nav class="nav nav--user">
+            <a href="#" class="nav__el">My Cart</a>
+            <button class="nav__el">Log out</button>
+            <a href="#" class="nav__el">
+                <img src="img/user.jpg" alt="User photo" class="nav__user-img" />
+                <span>Alex</span>
+            </a>
+        </nav>
+    </header>
+
+        <!-- Product Header -->
+        <div class="product-header">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Luffy Printed T-shirt">
+            </div>
+            
+            <div class="product-details">
+                <div class="brand-name">HOLY SAINT</div>
+                <h1 class="product-title">LUFFY PRINTED OVERSIZED TSHIRT</h1>
+                <div class="price">¥999.0</div>
+                
+                <div class="size-selection">
+                    <div class="size-title">Select Size</div>
+                    <div class="size-options">
+                        <div class="size-option" data-size="XS">XS</div>
+                        <div class="size-option" data-size="S">S</div>
+                        <div class="size-option selected" data-size="M">M</div>
+                        <div class="size-option" data-size="L">L</div>
+                        <div class="size-option" data-size="XL">XL</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-buy">BUY NOW</button>
+                    <button class="btn btn-cart" id="addToCartBtn">
+                        <i class="fas fa-shopping-cart"></i> ADD TO CART
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <section class="section-description">
+        <div class="overview-box">
+            <div>
+                <div class="overview-box__group">
+                    <h2 class="heading-secondary ma-bt-lg">Quick facts</h2>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-calendar"></use>
+                        </svg>
+                        <span class="overview-box__label">Next restock</span>
+                        <span class="overview-box__text">August 2023</span>
+                    </div>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-trending-up"></use>
+                        </svg>
+                        <span class="overview-box__label">Popularity</span>
+                        <span class="overview-box__text">High</span>
+                    </div>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-user"></use>
+                        </svg>
+                        <span class="overview-box__label">Sizes</span>
+                        <span class="overview-box__text">XS to XXL</span>
+                    </div>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-star"></use>
+                        </svg>
+                        <span class="overview-box__label">Rating</span>
+                        <span class="overview-box__text">4.8 / 5</span>
+                    </div>
+                </div>
+
+                <div class="overview-box__group">
+                    <h2 class="heading-secondary ma-bt-lg">Materials & Care</h2>
+
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-layers"></use>
+                        </svg>
+                        <span class="overview-box__label">Material</span>
+                        <span class="overview-box__text">100% Premium Cotton</span>
+                    </div>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-check-circle"></use>
+                        </svg>
+                        <span class="overview-box__label">Wash</span>
+                        <span class="overview-box__text">Machine Wash Cold</span>
+                    </div>
+                    <div class="overview-box__detail">
+                        <svg class="overview-box__icon">
+                            <use xlink:href="img/icons.svg#icon-refresh"></use>
+                        </svg>
+                        <span class="overview-box__label">Dry</span>
+                        <span class="overview-box__text">Tumble Dry Low</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description-box">
+            <h2 class="heading-secondary ma-bt-lg">About the premium oversized t-shirt</h2>
+            <p class="description__text">
+                Our premium oversized t-shirt is crafted from the finest 100% cotton, offering unparalleled comfort and durability. The relaxed fit provides a stylish silhouette that's perfect for everyday wear, while the high-quality print ensures your design stays vibrant wash after wash.
+            </p>
+            <p class="description__text">
+                Designed with attention to detail, this t-shirt features reinforced stitching, a comfortable crew neck, and a soft feel that gets better with every wear. Whether you're dressing up or keeping it casual, this versatile piece will quickly become a staple in your wardrobe.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-pictures">
+        <div class="picture-box">
+            <img
+                class="picture-box__img picture-box__img--1"
+                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
+                alt="Premium T-Shirt front view"
+            />
+        </div>
+        <div class="picture-box">
+            <img
+                class="picture-box__img picture-box__img--2"
+                src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+                alt="Premium T-Shirt side view"
+            />
+        </div>
+        <div class="picture-box">
+            <img
+                class="picture-box__img picture-box__img--3"
+                src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1615&q=80"
+                alt="Premium T-Shirt back view"
+            />
+        </div>
+    </section>
+
+    <section class="section-reviews">
+        <div class="reviews">
+            <div class="reviews__card">
+                <div class="reviews__avatar">
+                    <img
+                        src="img/users/user-7.jpg"
+                        alt="Jim Brown"
+                        class="reviews__avatar-img"
+                    />
+                    <h6 class="reviews__user">Jim Brown</h6>
+                </div>
+                <p class="reviews__text">
+                    The quality of this t-shirt is exceptional. The fabric is soft yet durable, and the fit is perfect. I've washed it multiple times and the print still looks brand new.
+                </p>
+                <div class="reviews__rating">
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="reviews__card">
+                <div class="reviews__avatar">
+                    <img
+                        src="img/users/user-14.jpg"
+                        alt="Laura Wilson"
+                        class="reviews__avatar-img"
+                    />
+                    <h6 class="reviews__user">Laura Wilson</h6>
+                </div>
+                <p class="reviews__text">
+                    I absolutely love the oversized fit of this t-shirt. It's comfortable without being too baggy, and the material is breathable for warmer days. The design is even more vibrant in person!
+                </p>
+                <div class="reviews__rating">
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--inactive">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="reviews__card">
+                <div class="reviews__avatar">
+                    <img
+                        src="img/users/user-15.jpg"
+                        alt="Ben Hadley"
+                        class="reviews__avatar-img"
+                    />
+                    <h6 class="reviews__user">Ben Hadley</h6>
+                </div>
+                <p class="reviews__text">
+                    This is hands down the most comfortable t-shirt I own. The fabric quality is premium, and the cut is perfect for my style. I've already ordered two more in different colors!
+                </p>
+                <div class="reviews__rating">
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                    <svg class="reviews__star reviews__star--active">
+                        <use xlink:href="img/icons.svg#icon-star"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-cta">
+        <div class="cta">
+            <div class="cta__img cta__img--logo">
+                <img src="img/logo-white.png" alt="Urban Threads logo" class="" />
+            </div>
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="" class="cta__img cta__img--1" />
+            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="" class="cta__img cta__img--2" />
+
+            <div class="cta__content">
+                <h2 class="heading-secondary">What are you waiting for?</h2>
+                <p class="cta__text">
+                    Premium quality. Limited edition. Ultimate comfort. Make it yours today!
+                </p>
+                <button class="btn btn--green span-all-rows">Add to cart</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="footer__logo">
+            <img src="img/logo-white.png" alt="Urban Threads logo" />
+        </div>
+        <ul class="footer__nav">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Size guide</a></li>
+            <li><a href="#">Become a designer</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p class="footer__copyright">
+            &copy; by Urban Threads. All rights reserved.
+        </p>
+    </div>
+</body>
+</html>
