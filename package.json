@@ -1,0 +1,29 @@
+{
+  "name": "holy-saint",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/KalyaniDhananjayan/Holy-Saint#readme",
+  "bugs": {
+    "url": "https://github.com/KalyaniDhananjayan/Holy-Saint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KalyaniDhananjayan/Holy-Saint.git"
+  },
+  "license": "ISC",
+  "author": "Kalyani Dhananjayan",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
+    "validator": "^13.15.23"
+  }
+}
