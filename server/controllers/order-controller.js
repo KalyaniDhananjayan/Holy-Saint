@@ -58,7 +58,7 @@ const createOrder = catchAsync(async (req, res, next) => {
 const getMyOrders = catchAsync(async (req, res, next) => {
   const orders = await Order.find({ user: req.user.id }).populate(
     'items.tshirt',
-    'name price'
+    'name price designImages'
   );
 
   res.status(200).json({
@@ -73,7 +73,7 @@ const getMyOrders = catchAsync(async (req, res, next) => {
 const getOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id)
     .populate('user', 'name email')
-    .populate('items.tshirt', 'name price');
+    .populate('items.tshirt', 'name price designImages');
 
   if (!order) {
     return next(new AppError('No order found with that ID', 404));
@@ -88,7 +88,7 @@ const getOrder = catchAsync(async (req, res, next) => {
 const getAllOrders = catchAsync(async (req, res, next) => {
   const orders = await Order.find()
     .populate('user', 'name email')
-    .populate('items.tshirt', 'name price');
+    .populate('items.tshirt', 'name price designImages');
 
   res.status(200).json({
     status: 'success',
