@@ -13,7 +13,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError(null);
 
-    const res = await fetch('http://localhost:5000/api/v1/auth/login', {
+    const res = await fetch('https://holy-saint-backend.onrender.com/api/v1/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

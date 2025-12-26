@@ -1,13 +1,14 @@
 # HOLY SAINT
 
-A full-stack e-commerce MVP for a fashion brand, built with Node.js, Express, MongoDB, and Next.js.
+A full-stack e-commerce MVP for a fashion brand, focused on authentication, order lifecycle, and admin-controlled operations.
+
 
 ## Why this project?
 
 This project was built to understand how a real-world full-stack application works end-to-end:
-authentication, protected routes, product management, order lifecycle, and admin controls.
+authentication, protected routes, and product management.
 
-Instead of focusing on many features, the goal was to build a complete and correct system flow.
+The goal was to build a complete and correct system flow which prioritizes correctness, clarity, and separation of concerns over feature count.
 
 ## Tech Stack
 
@@ -67,30 +68,31 @@ Instead of focusing on many features, the goal was to build a complete and corre
 cd backend
 npm install
 npm run dev
+```
 
-Create a .env file inside backend:
+### Create a `.env` file inside backend:
 
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_secret
-JWT_EXPIRES_IN=90d
+`MONGO_URI=your_mongodb_uri`
+`JWT_SECRET=your_secret`
+`JWT_EXPIRES_IN=90d`
 
-###Frontend
+### Frontend
 
-cd client
-npm install
-npm run dev
+`cd client`
+`npm install`
+`npm run dev`
 
 
-Design Decisions
+### Design Decisions
 
-No payment gateway yet (focus was on core system flow)
+- No payment gateway yet (focus was on core system flow)
 
-No cart system (direct order model used for MVP)
+- No cart system (direct order model used for MVP)
 
-Minimal UI animations to keep the project clean and readable
+- Minimal UI animations to keep the project clean and readable
 
-```md
-## Possible Extensions
+## Future Improvements
+
 
 - Payment integration (Stripe)
 - Cart system

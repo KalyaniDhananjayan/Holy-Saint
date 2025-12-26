@@ -16,9 +16,10 @@ connectDB();
 
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://holy-saint-fadn47gjz-kalyani-dhananjayans-projects.vercel.app/',
   credentials: true
 }));
+
 
 app.use(cookieParser());
 

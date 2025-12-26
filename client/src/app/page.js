@@ -12,7 +12,7 @@ export default function HomePage() {
     const fetchTshirts = async () => {
       try {
         const res = await fetch(
-          'http://localhost:5000/api/v1/tshirts',
+          'https://holy-saint-backend.onrender.com/api/v1/tshirts',
           { cache: 'no-store' }
         );
 
@@ -51,10 +51,14 @@ export default function HomePage() {
           className="group bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-400 transition"
         >
 
-          {/* Image placeholder */}
-          <div className="h-64 bg-zinc-800 rounded-lg mb-5 flex items-center justify-center text-zinc-300 text-sm">
-            PRODUCT IMAGE
+         <div className="h-64 rounded-lg mb-5 overflow-hidden bg-zinc-800">
+            <img
+              src={product.designImages[0]}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
           </div>
+
 
           <h2 className="text-lg font-semibold group-hover:text-zinc-400 transition">
             {product.name}

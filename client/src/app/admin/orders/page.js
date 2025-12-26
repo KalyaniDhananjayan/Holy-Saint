@@ -24,7 +24,7 @@ export default function AdminOrdersPage() {
     const fetchOrders = async () => {
       try {
         const res = await fetch(
-          'http://localhost:5000/api/v1/orders',
+          'https://holy-saint-backend.onrender.com/api/v1/orders',
           {
             credentials: 'include',
             cache: 'no-store'
@@ -49,7 +49,7 @@ export default function AdminOrdersPage() {
       setUpdatingId(orderId);
 
       const res = await fetch(
-        `http://localhost:5000/api/v1/orders/${orderId}/status`,
+        'https://holy-saint-backend.onrender.com/api/v1/orders/${orderId}/status',
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -79,7 +79,7 @@ export default function AdminOrdersPage() {
 
   return (
     <div>
-      <h2>Admin Orders</h2>
+      <h2 className="my-4">Admin Orders</h2>
 
       {orders.length === 0 && <p>No orders found</p>}
 
@@ -87,9 +87,10 @@ export default function AdminOrdersPage() {
         <div
           key={order._id}
           style={{
-            border: '1px solid #ccc',
+            border: '1px solid #434343ff',
             padding: '12px',
-            marginBottom: '12px'
+            marginTop: '9px',
+            marginBottom: '6px'
           }}
         >
           <p><strong>Order ID:</strong> {order._id}</p>
@@ -101,9 +102,8 @@ export default function AdminOrdersPage() {
             <select
               value={order.status}
               disabled={updatingId === order._id}
-              onChange={e =>
-                updateStatus(order._id, e.target.value)
-              }
+              onChange={e => updateStatus(order._id, e.target.value)}
+              className="bg-zinc-700 text-white px-2 py-1 rounded border border-zinc-600 focus:outline-none"
             >
               <option value="paid">Paid</option>
               <option value="shipped">Shipped</option>

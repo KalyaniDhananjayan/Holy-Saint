@@ -18,7 +18,7 @@ export default function ProductPage() {
     const fetchTshirt = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/v1/tshirts/${id}`,
+          `https://holy-saint-backend.onrender.com/api/v1/tshirts/${id}`,
           { cache: 'no-store' }
         );
 
@@ -45,7 +45,7 @@ export default function ProductPage() {
     setBuying(true);
 
     const res = await fetch(
-      'http://localhost:5000/api/v1/orders',
+      'https://holy-saint-backend.onrender.com/api/v1/orders',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -76,11 +76,15 @@ export default function ProductPage() {
   if (!tshirt) return <p>Product not found</p>;
 
  return (
-    <div className="py-16 grid grid-cols-1 md:grid-cols-2 gap-14">
+  <div className="pt-8 pb-6 grid grid-cols-1 md:grid-cols-2 gap-8">
 
     {/* Image */}
-    <div className="h-[440px] bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-500">
-      PRODUCT IMAGE
+    <div className="aspect-square bg-zinc-800 rounded-xl">
+      <img
+        src={tshirt.designImages[0]}
+        alt={tshirt.name}
+        className="w-full h-full object-cover"
+       />
     </div>
 
     {/* Details */}
@@ -115,7 +119,7 @@ export default function ProductPage() {
       <button
         onClick={handleBuy}
         disabled={buying}
-        className="px-10 py-3 bg-zinc-100 text-black font-semibold rounded-lg hover:bg-zinc-400 transition disabled:opacity-50"
+        className="px-10 py-3 bg-zinc-300 text-black font-semibold rounded-lg hover:bg-zinc-600 transition disabled:opacity-50"
       >
         {buying ? 'Processing...' : 'BUY NOW'}
       </button>

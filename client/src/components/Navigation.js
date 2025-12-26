@@ -8,7 +8,7 @@ export default function Navigation() {
 
   if (loading) return null;
     const logout = async () => {
-        await fetch('http://localhost:5000/api/v1/auth/logout', {
+        await fetch('https://holy-saint-backend.onrender.com/api/v1/auth/logout', {
             method: 'GET',
             credentials: 'include'
         });

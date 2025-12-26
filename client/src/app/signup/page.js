@@ -21,7 +21,7 @@ export default function SignupPage() {
     e.preventDefault();
     setError(null);
 
-    const res = await fetch('http://localhost:5000/api/v1/auth/signup', {
+    const res = await fetch('https://holy-saint-backend.onrender.com/api/v1/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
