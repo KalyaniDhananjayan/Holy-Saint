@@ -13,7 +13,14 @@ export default function AdminOrdersPage() {
   const [updatingId, setUpdatingId] = useState(null);
 
   useEffect(() => {
-    if (loading) return;
+    if (loading) {
+      return (
+        <div className="py-20 text-center text-zinc-400">
+          Loading...
+        </div>
+      );
+    }
+
 
     // Frontend UX protection (backend already protects)
     if (!user || user.role !== 'admin') {
