@@ -20,13 +20,16 @@ const signup = catchAsync(async (req, res, next) => {
   const token = signToken(newUser._id);
 
   const cookieOptions = {
-    expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    expires: new Date(
+      Date.now() + 90 * 24 * 60 * 60 * 1000
+    )
   };
 
   res.cookie('jwt', token, cookieOptions);
+
 
   newUser.password = undefined;
 
@@ -55,15 +58,16 @@ const login = catchAsync(async (req, res, next) => {
   const token = signToken(user._id);
 
   const cookieOptions = {
-    expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
     httpOnly: true,
     secure: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    expires: new Date(
+      Date.now() + 90 * 24 * 60 * 60 * 1000
+    )
   };
 
-
-
   res.cookie('jwt', token, cookieOptions);
+
 
   user.password = undefined;
 
@@ -77,17 +81,18 @@ const login = catchAsync(async (req, res, next) => {
 });
 
 const logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000), // 10 seconds
+  res.cookie('jwt', '', {
+    expires: new Date(0),
     httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production'
+    secure: true,
+    sameSite: 'none'
   });
 
   res.status(200).json({
     status: 'success'
   });
 };
+
 
 
 const protect = catchAsync(async (req, res, next) => {

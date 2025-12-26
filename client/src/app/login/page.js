@@ -31,31 +31,46 @@ export default function LoginPage() {
 
   };
 
-  return (
-    <div>
-      <h2>Login</h2>
+return (
+  <div className="min-h-screen flex items-center justify-center bg-zinc-950">
+    <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-8">
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h2 className="text-2xl font-bold mb-6 text-zinc-100">
+        Login
+      </h2>
 
-      <form onSubmit={handleSubmit}>
+      {error && (
+        <p className="mb-4 text-sm text-red-400">
+          {error}
+        </p>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          className="w-full px-4 py-2 bg-zinc-950 border border-zinc-700 rounded-md text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-400"
         />
-        <br />
 
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          className="w-full px-4 py-2 bg-zinc-950 border border-zinc-700 rounded-md text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-zinc-400"
         />
-        <br />
 
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="w-full mt-4 py-2 bg-zinc-200 text-zinc-900 font-semibold rounded-md hover:bg-zinc-300 transition"
+        >
+          Login
+        </button>
+
       </form>
     </div>
-  );
-}
+  </div>
+);}
