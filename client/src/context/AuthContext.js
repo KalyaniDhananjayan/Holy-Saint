@@ -4,46 +4,41 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // 🔴 IMPORTANT
 
   useEffect(() => {
-    const checkLoggedIn = async () => {
+    const checkAuth = async () => {
       try {
         const res = await fetch(
-            'http://localhost:5000/api/v1/auth/me',
-            {
-                method: 'GET',
-                credentials: 'include',
-                cache: 'no-store' // 🔥 THIS LINE
-            }
+          'https://holy-saint-backend.onrender.com/api/v1/auth/me',
+          {
+            credentials: 'include'
+          }
         );
-
 
         if (!res.ok) {
           setUser(null);
         } else {
           const data = await res.json();
-          setUser(data.data.user);
+          setUser(data.user || data.data?.user);
         }
       } catch (err) {
         setUser(null);
       } finally {
-        setLoading(false);
+        setLoading(false); // 🔴 AUTH CHECK FINISHED
       }
     };
 
-    checkLoggedIn();
+    checkAuth();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth = () => useContext(AuthContext);
