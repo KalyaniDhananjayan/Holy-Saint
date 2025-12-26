@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function MyOrdersPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
 
@@ -28,11 +29,11 @@ export default function MyOrdersPage() {
           }
         );
 
-        if (!res.ok) throw new Error('Failed to fetch orders');
+        if (!res.ok) throw new Error('Failed');
 
         const data = await res.json();
         setOrders(data.data.orders);
-      } catch (err) {
+      } catch {
         setError('Could not load orders');
       }
     };
@@ -55,15 +56,13 @@ export default function MyOrdersPage() {
             key={order._id}
             className="bg-zinc-900 border border-zinc-800 rounded-xl p-6"
           >
-            {/* Order items */}
             <div className="space-y-4">
               {order.items.map(item => (
                 <div
                   key={item._id}
                   className="flex items-center gap-4 border-b border-zinc-800 pb-4 last:border-b-0 last:pb-0"
                 >
-                  {/* Image */}
-                  <div className="w-20 h-20 bg-zinc-800 rounded-lg flex items-center justify-center overflow-hidden">
+                  <div className="w-20 h-20 bg-zinc-800 rounded-lg overflow-hidden">
                     {item.tshirt?.designImages?.[0] ? (
                       <img
                         src={item.tshirt.designImages[0]}
@@ -77,22 +76,18 @@ export default function MyOrdersPage() {
                     )}
                   </div>
 
-                  {/* Details */}
                   <div className="flex-1">
                     <p className="font-semibold">
                       {item.tshirt?.name}
                     </p>
-
                     <p className="text-sm text-zinc-400">
                       ₹{item.price} × {item.quantity}
                     </p>
                   </div>
-
                 </div>
               ))}
             </div>
 
-            {/* Order summary */}
             <div className="mt-6 flex items-center justify-between">
               <div>
                 <p className="text-sm text-zinc-400">

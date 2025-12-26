@@ -13,16 +13,8 @@ export default function AdminOrdersPage() {
   const [updatingId, setUpdatingId] = useState(null);
 
   useEffect(() => {
-    if (loading) {
-      return (
-        <div className="py-20 text-center text-zinc-400">
-          Loading...
-        </div>
-      );
-    }
+    if (loading) return;
 
-
-    // Frontend UX protection (backend already protects)
     if (!user || user.role !== 'admin') {
       router.push('/');
       return;
@@ -43,7 +35,6 @@ export default function AdminOrdersPage() {
         const data = await res.json();
         setOrders(data.data.orders);
       } catch (err) {
-        console.error(err);
         setError('Could not load orders');
       }
     };
@@ -51,12 +42,13 @@ export default function AdminOrdersPage() {
     fetchOrders();
   }, [user, loading, router]);
 
+
   const updateStatus = async (orderId, newStatus) => {
     try {
       setUpdatingId(orderId);
 
       const res = await fetch(
-        'https://holy-saint-backend.onrender.com/api/v1/orders/${orderId}/status',
+        `https://holy-saint-backend.onrender.com/api/v1/orders/${orderId}/status`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },

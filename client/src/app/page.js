@@ -33,7 +33,13 @@ export default function HomePage() {
     fetchTshirts();
   }, []);
 
-  if (loading) return <p>Loading T-shirts...</p>;
+  if (loading) {
+  return (
+    <div className="py-20 text-center text-zinc-400">
+      Loading products...
+    </div>
+  );}
+
   if (error) return <p>{error}</p>;
 
   return (
