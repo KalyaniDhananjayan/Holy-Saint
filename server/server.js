@@ -16,7 +16,7 @@ connectDB();
 
 
 app.use(cors({
-  origin: 'https://holy-saint-fadn47gjz-kalyani-dhananjayans-projects.vercel.app/',
+  origin: 'https://holy-saint-2css5x510-kalyani-dhananjayans-projects.vercel.app/',
   credentials: true
 }));
 
