@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* optional: tiny global tweaks only */
+html, body {
+  height: 100%;
+}
+
+@font-face {
+  font-family: 'Rasputin';
+  src: url('/fonts/Rasputin.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
