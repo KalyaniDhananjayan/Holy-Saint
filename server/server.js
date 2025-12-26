@@ -16,9 +16,13 @@ connectDB();
 
 
 app.use(cors({
-  origin: 'https://holy-saint-nyzw.vercel.app/',
+  origin: [
+    'http://localhost:3000',
+    'https://holy-saint-nyzw.vercel.app'
+  ],
   credentials: true
 }));
+
 
 
 app.use(cookieParser());
