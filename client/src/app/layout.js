@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
       <body className="bg-zinc-950 text-zinc-100 min-h-screen">
         <Providers>
           <Navigation />
-          <main className="max-w-7xl mx-auto px-6">
+          <main className="max-w-7xl mx-auto px-4 sm:px-6">
             {children}
           </main>
         </Providers>
