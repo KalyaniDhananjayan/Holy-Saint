@@ -38,6 +38,20 @@ const orderSchema = new mongoose.Schema(
       default: 'paid'
     },
 
+    shippingAddress: {
+      name: String,
+      phone: String,
+      address: String,
+      city: String,
+      state: String,
+      pincode: String
+    },
+    
+    paymentMethod: {
+      type: String,
+      default: 'dummy'
+    },
+
     createdAt: {
       type: Date,
       default: Date.now

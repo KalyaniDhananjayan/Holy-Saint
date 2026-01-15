@@ -2,20 +2,18 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import { useCart } from '@/context/CartContext';
 
 export default function Navigation() {
-  const { user, loading } = useAuth();
+  const { user, logout, loading } = useAuth();
+  const { cart } = useCart();
+  const { clearCart } = useCart();
+  
+  const handleLogout = async () => {
+    await logout();
+  };
 
   if (loading) return null;
-    const logout = async () => {
-        await fetch('https://holy-saint-backend.onrender.com/api/v1/auth/logout', {
-            method: 'GET',
-            credentials: 'include'
-        });
-
-        window.location.reload();
-    };
-
   return (
     <nav className="w-full border-b border-zinc-800 bg-zinc-950">
     <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -70,12 +68,12 @@ export default function Navigation() {
               </Link>
             )}
 
-            <button
-              onClick={logout}
-              className="group bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-500 transition"
-            >
-              Logout
-            </button>
+          <button
+            onClick={handleLogout}
+            className="text-zinc-300 hover:text-zinc-100 transition"
+          >
+            Logout
+          </button>
           </>
         )}
 
@@ -85,10 +83,19 @@ export default function Navigation() {
         >
           Products
         </Link>
+        <Link
+          href="/cart"
+          className="relative text-zinc-300 hover:text-zinc-100 transition"
+        >
+          🛒
+          {cart.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-zinc-200 text-black text-xs rounded-full w-3 h-4 flex items-center justify-center">
+              {cart.length}
+            </span>
+          )}
+        </Link>
       </div>
-
     </div>
   </nav>
-
   );
 }

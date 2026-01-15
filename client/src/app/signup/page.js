@@ -24,7 +24,7 @@ export default function SignupPage() {
     }));
   };
 
-  // ✅ Frontend validation
+  // Frontend validation
   const validate = () => {
     if (!form.name) {
       setError('Name is required');
@@ -67,28 +67,33 @@ export default function SignupPage() {
     }
 
     const data = await res.json();
-
-    // 🔥 update auth state immediately
     setUser(data.data.user);
   };
 
-  // ✅ Redirect AFTER auth hydration
   useEffect(() => {
     if (loading) return;
 
     if (user) {
-      const action = JSON.parse(localStorage.getItem('postLoginAction'));
+      const redirect = JSON.parse(localStorage.getItem('postLoginRedirect'));
 
-      if (action?.type === 'BUY') {
-        localStorage.removeItem('postLoginAction');
-        router.replace(`/product/${action.productId}?resume=true`);
-      } else {
-        router.replace('/');
+      if (redirect?.type === 'BUY') {
+        localStorage.removeItem('postLoginRedirect');
+        router.replace(`/product/${redirect.productId}?resume=true`);
+        return;
       }
+
+      if (redirect?.type === 'CHECKOUT') {
+        localStorage.removeItem('postLoginRedirect');
+        router.replace('/checkout');
+        return;
+      }
+
+      router.replace('/');
     }
   }, [user, loading, router]);
 
-  // ✅ Loading UI (after hooks)
+
+  // loading state
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-zinc-400">

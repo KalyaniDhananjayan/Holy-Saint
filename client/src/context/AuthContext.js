@@ -34,8 +34,23 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
+  const logout = async () => {
+    try {
+      await fetch(
+        'https://holy-saint-backend.onrender.com/api/v1/auth/logout',
+        { credentials: 'include' }
+      );
+    } catch (err) {
+      console.error('Logout request failed', err);
+    }
+
+    setUser(null);
+  };
+
+
+
   return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
+    <AuthContext.Provider value={{ user, setUser, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
