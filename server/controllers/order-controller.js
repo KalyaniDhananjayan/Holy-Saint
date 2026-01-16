@@ -4,10 +4,14 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 const createOrder = catchAsync(async (req, res, next) => {
-  const { items } = req.body;
+  const { items, shippingAddress } = req.body;
 
   if (!items || items.length === 0) {
     return next(new AppError('No items in order', 400));
+  }
+
+  if (!shippingAddress) {
+    return next(new AppError('Shipping address is required', 400));
   }
 
   let totalAmount = 0;
@@ -43,7 +47,8 @@ const createOrder = catchAsync(async (req, res, next) => {
   const order = await Order.create({
     user: req.user.id,
     items: orderItems,
-    totalAmount
+    totalAmount,
+    shippingAddress
   });
 
   res.status(201).json({
