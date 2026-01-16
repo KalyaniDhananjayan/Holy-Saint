@@ -4,13 +4,14 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 const createOrder = catchAsync(async (req, res, next) => {
-  const { items, shippingAddress } = req.body;
+  const { items, shippingAddress } = req.body; // ← Extract shippingAddress
 
   if (!items || items.length === 0) {
     return next(new AppError('No items in order', 400));
   }
 
-  if (!shippingAddress) {
+  // Validate shipping address
+  if (!shippingAddress || !shippingAddress.name || !shippingAddress.phone) {
     return next(new AppError('Shipping address is required', 400));
   }
 
@@ -30,10 +31,7 @@ const createOrder = catchAsync(async (req, res, next) => {
       );
     }
 
-    // calculate total
     totalAmount += tshirt.price * item.quantity;
-
-    // reduce stock
     tshirt.stock -= item.quantity;
     await tshirt.save();
 
@@ -44,11 +42,13 @@ const createOrder = catchAsync(async (req, res, next) => {
     });
   }
 
+  // Create order WITH shippingAddress
   const order = await Order.create({
     user: req.user.id,
     items: orderItems,
     totalAmount,
-    shippingAddress
+    shippingAddress, 
+    paymentMethod: req.body.paymentMethod || 'dummy'
   });
 
   res.status(201).json({
